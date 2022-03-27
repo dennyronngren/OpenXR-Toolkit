@@ -58,6 +58,7 @@ namespace toolkit {
 
     namespace config {
 
+        const std::string SettingDeveloper = "developer";
         const std::string SettingScreenshotEnabled = "enable_screenshot";
         const std::string SettingScreenshotFileFormat = "screenshot_fileformat";
         const std::string SettingScreenshotKey = "key_screenshot";
