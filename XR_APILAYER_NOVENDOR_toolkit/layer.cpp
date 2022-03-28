@@ -684,8 +684,10 @@ namespace {
 
                     if (m_upscaler) {
                         // When upscaling, be sure to request the full resolution with the runtime.
-                        chainCreateInfo.width = m_displayWidth;
-                        chainCreateInfo.height = m_displayHeight;
+                        // TODO: Disabled temporarily to fix perspective issues on Zombieland which renders with crop
+                        // and larger textrures than recommended
+                        chainCreateInfo.width = std::max(m_displayWidth, createInfo->width);
+                        chainCreateInfo.height = std::max(m_displayHeight, createInfo->height);
 
                         // The upscaler requires to use as an unordered access view.
                         chainCreateInfo.usageFlags |= XR_SWAPCHAIN_USAGE_UNORDERED_ACCESS_BIT;
@@ -1734,8 +1736,10 @@ namespace {
                         depthForOverlay[eye] = depthBuffer;
 
                         // Patch the resolution.
-                        correctedProjectionViews[eye].subImage.imageRect.extent.width = m_displayWidth;
-                        correctedProjectionViews[eye].subImage.imageRect.extent.height = m_displayHeight;
+                        // TODO: Disabled temporarily to fix perspective issues on Zombieland which renders with crop
+                        // and larger textrures than recommended
+                        // correctedProjectionViews[eye].subImage.imageRect.extent.width = m_displayWidth;
+                        //correctedProjectionViews[eye].subImage.imageRect.extent.height = m_displayHeight;
 
                         // Patch the eye poses.
                         const int cantOverride = m_configManager->getValue("canting");
